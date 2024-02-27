@@ -10,16 +10,17 @@ export default function App() {
     { task_name: "go gym", task_id: "2", complete: false },
   ]);
 
-  const pressHandler = (id) => {
-    console.log(id);
-    setTask((task_id) => {
-      return task_id.filter((task_id) => task_id.task_id != id);
-    });
+  const toggleComplete = (taskId) => {
+    setTask((prevTasks) =>
+      prevTasks.map((task) =>
+        task.task_id === taskId ? { ...task, complete: !task.complete } : task
+      )
+    );
   };
 
   return (
     <View style={styles.container}>
-      <ToDoList task={task} setTask={setTask} />
+      <ToDoList tasks={task} taskComplete={toggleComplete} />
       <ToDoForm setTask={setTask} />
       <StatusBar style="auto" />
     </View>

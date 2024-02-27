@@ -4,43 +4,25 @@ import {
   Text,
   View,
   ScrollView,
-  FlatList,
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 
-export default function ToDoList({ task, setTask }) {
-  const listCard = () => {
-    return task.map((task) => {
-      return (
-        <TouchableOpacity
-          onPress={() => {
-            setTask((task_id) => {
-              return task_id.filter(
-                (task_id) => task_id.task_id != task.task_id
-              );
-            });
-          }}
-        >
-          <Text style={styles.uncomplete}>{task.task_name}</Text>
-        </TouchableOpacity>
-      );
-    });
-  };
+export default function ToDoList({ tasks, taskComplete }) {
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <TouchableOpacity onPress={() => setComplete(!complete)}>
-          <FlatList
-            keyExtractor={(item) => item.task_id}
-            data={task}
-            renderItem={({ item }) => (
-              <Text style={styles.uncomplete}>{item.task_name}</Text>
-            )}
-          />
+    <ScrollView style={styles.container}>
+      {tasks.map((task) => (
+        <TouchableOpacity
+          key={task.task_id}
+          style={styles.task}
+          onPress={() => taskComplete(task.task_id)}
+        >
+          <Text style={task.complete ? styles.complete1 : styles.uncomplete}>
+            {task.task_name}
+          </Text>
         </TouchableOpacity>
-      </ScrollView>
-    </View>
+      ))}
+    </ScrollView>
   );
 }
 

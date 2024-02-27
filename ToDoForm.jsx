@@ -18,7 +18,7 @@ export default function ToDoForm({ setTask }) {
     console.log(text);
     setTask((prevTask) => {
       return [
-        { task_name: text, task_id: Math.random().toString() },
+        { task_name: text, task_id: Math.random().toString(), complete: false },
         ...prevTask,
       ];
     });
