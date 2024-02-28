@@ -7,7 +7,8 @@ import ToDoForm from "./ToDoForm";
 export default function App() {
   const [task, setTask] = useState([
     { task_name: "Do laundry", task_id: "1", complete: false },
-    { task_name: "go gym", task_id: "2", complete: false },
+    { task_name: "Go gym", task_id: "2", complete: true },
+    { task_name: "Walk Dog", task_id: "3", complete: false },
   ]);
 
   const toggleComplete = (taskId) => {

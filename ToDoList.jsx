@@ -17,7 +17,7 @@ export default function ToDoList({ tasks, taskComplete }) {
           style={styles.task}
           onPress={() => taskComplete(task.task_id)}
         >
-          <Text style={task.complete ? styles.complete1 : styles.uncomplete}>
+          <Text style={task.complete ? styles.complete : styles.uncomplete}>
             {task.task_name}
           </Text>
         </TouchableOpacity>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgray",
     flex: 1,
   },
-  complete1: {
+  complete: {
     fontSize: 20,
     fontWeight: "bold",
     width: "100%",
