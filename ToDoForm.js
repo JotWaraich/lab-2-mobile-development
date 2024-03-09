@@ -8,7 +8,7 @@ import {
   Button,
 } from "react-native";
 
-export default function ToDoForm({ setTask }) {
+export default function ToDoForm({ addTask }) {
   const [text, setText] = useState("");
   const changeHandler = (val) => {
     setText(val);
@@ -16,12 +16,7 @@ export default function ToDoForm({ setTask }) {
 
   const submitHendler = (text) => {
     console.log(text);
-    setTask((prevTask) => {
-      return [
-        { task_name: text, task_id: Math.random().toString(), complete: false },
-        ...prevTask,
-      ];
-    });
+    addTask(text);
     setText("");
   };
 
@@ -30,6 +25,7 @@ export default function ToDoForm({ setTask }) {
       <TextInput
         style={styles.input}
         placeholder="Add new task here"
+        value={text}
         onChangeText={(val) => changeHandler(val)}
       />
       <Button title="Add Task" onPress={() => submitHendler(text)} />

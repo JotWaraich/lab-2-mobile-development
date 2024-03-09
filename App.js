@@ -19,10 +19,19 @@ export default function App() {
     );
   };
 
+  const addTask = (text) => {
+    setTask((prevTask) => {
+      return [
+        { task_name: text, task_id: Math.random().toString(), complete: false },
+        ...prevTask,
+      ];
+    });
+  };
+
   return (
     <View style={styles.container}>
       <ToDoList tasks={task} taskComplete={toggleComplete} />
-      <ToDoForm setTask={setTask} />
+      <ToDoForm addTask={addTask} />
       <StatusBar style="auto" />
     </View>
   );
