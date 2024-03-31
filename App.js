@@ -1,39 +1,21 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
-import ToDoList from "./ToDoList";
-import ToDoForm from "./ToDoForm";
+import { NavigationContainer } from "@react-navigation/native";
+import HomeScreen from "./src/screens/HomeScreen";
+import AboutScreen from "./src/screens/AboutScreen";
+
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [task, setTask] = useState([
-    { task_name: "Do laundry", task_id: "1", complete: false },
-    { task_name: "Go gym", task_id: "2", complete: true },
-    { task_name: "Walk Dog", task_id: "3", complete: false },
-  ]);
-
-  const toggleComplete = (taskId) => {
-    setTask((prevTasks) =>
-      prevTasks.map((task) =>
-        task.task_id === taskId ? { ...task, complete: !task.complete } : task
-      )
-    );
-  };
-
-  const addTask = (text) => {
-    setTask((prevTask) => {
-      return [
-        { task_name: text, task_id: Math.random().toString(), complete: false },
-        ...prevTask,
-      ];
-    });
-  };
-
   return (
-    <View style={styles.container}>
-      <ToDoList tasks={task} taskComplete={toggleComplete} />
-      <ToDoForm addTask={addTask} />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer style={styles.container}>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
